@@ -9,6 +9,12 @@
   vars:
     service_name: sshd
   tasks:
-  - template:
-      src: service_report.txt.j2
-      dest: /tmp/report-{{ service_name }}.txt
+  - lineinfile:
+      dest: /tmp/report.txt
+      regexp: "^{{ item|regex_escape }} {{ service_name }} "
+      line: "{{ item }} {{ service_name }} status: {{ hostvars[item].service_status_result|changed|ternary('disabled', 'enabled') }}"
+      create: true
+    with_inventory_hostnames: vms
+#  - template:
+#      src: service_report.txt.j2
+#      dest: /tmp/report-{{ service_name }}.txt
