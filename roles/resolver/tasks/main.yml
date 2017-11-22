@@ -1,0 +1,5 @@
+- name: Generate resolver config
+  template:
+    src: resolv.conf.j2
+    dest: "{{ resolv_conf }}"
+    backup: true
