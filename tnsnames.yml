@@ -1,0 +1,18 @@
+- hosts: localhost
+  vars:
+    tnsnames:
+    - A01.WORLD
+    - TEC.WORLD
+
+  tasks:
+#  - name: Set tnsnames.ora aliases
+#    blockinfile:
+#      dest: /root/lab/tnsnames.ora
+#      block: "{{ lookup('file', item ~ '.ora') }}\n\n"
+#      marker: "# {mark} {{ item }}"
+#    with_items: "{{ tnsnames }}"
+  - name: Set tnsnames.ora aliases
+    blockinfile:
+      dest: /root/lab/tnsnames.ora
+      block: "{% for tns in tnsnames %}{{ lookup('file', tns ~ '.ora') }}\n\n{% endfor %}"
+#      block: "{{ lookup('template', 'tnsnames.ora.j2') }}"
