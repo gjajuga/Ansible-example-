@@ -1,0 +1,14 @@
+- hosts: vms
+  user: root
+  vars:
+    service_name: sshd
+  roles:
+  - role: service-status
+
+- hosts: localhost
+  vars:
+    service_name: sshd
+  tasks:
+  - template:
+      src: service_report.txt.j2
+      dest: /tmp/report-{{ service_name }}.txt

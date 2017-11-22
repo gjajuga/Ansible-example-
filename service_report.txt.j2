@@ -1,0 +1,3 @@
+{% for host in groups.vms %}
+{{ host }} {{ service_name }} status: {{ hostvars[host].service_status_result|changed|ternary("disabled", "enabled") }}
+{% endfor %}

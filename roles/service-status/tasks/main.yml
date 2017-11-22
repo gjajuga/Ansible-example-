@@ -1,0 +1,7 @@
+- name: Check if service is running
+  service:
+    name: "{{ service_name }}"
+    state: started
+    enabled: true
+  check_mode: true
+  register: service_status_result

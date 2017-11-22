@@ -1,6 +1,6 @@
 resolv_conf: /etc/resolv.demo
 dns_resolvers:
-- 8.8.8.8
 - 8.8.4.4
+- 8.8.8.8
 search_domain: ""
 
